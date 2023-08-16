@@ -34,7 +34,7 @@ void print_env(void)
 		if (environ[i])
 		{
 			write(file_d, environ[i], _strlen(environ[i]));
-			write (file_d, "\n", 1);
+			write(file_d, "\n", 1);
 		}
 	}
 }

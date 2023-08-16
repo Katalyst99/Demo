@@ -62,6 +62,12 @@ char *_strcat(char *dest, char *src)
 	return (dest);
 }
 
+/**
+ * _strcmp - compares two strings, should work exactly like strcmp
+ * @s1: First string
+ * @s2: Second string
+ * Return: 0 if s1 and s2 are equal, another number if not.
+ */
 int _strcmp(char *s1, char *s2)
 {
 	int i;
@@ -98,7 +104,6 @@ char *_strdup(char *str)
 	}
 
 	len = i + 1;
-
 	newstr = malloc(len);
 	if (newstr == NULL)
 	{

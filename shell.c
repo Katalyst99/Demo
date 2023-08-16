@@ -4,7 +4,7 @@
  * main - shell entry point
  * Return: Always 0
  */
-int main(int __attribute__((unused))argc, char __attribute__((unused))**argv)
+int main(void)
 {
 	size_t i = 0;
 	char *lineptr = NULL;
@@ -15,10 +15,8 @@ int main(int __attribute__((unused))argc, char __attribute__((unused))**argv)
 
 	while (1)
 	{
-		if(isatty(STDIN_FILENO) == 1)
-		{
+		if (isatty(STDIN_FILENO) == 1)
 			write(STDOUT_FILENO, "$ ", 2);
-		}
 		rc = getline(&lineptr, &i, stdin);
 		if (rc == -1)
 		{
@@ -31,14 +29,10 @@ int main(int __attribute__((unused))argc, char __attribute__((unused))**argv)
 		}
 
 		if (_strcmp(lineptr, "exit") == 0)
-		{
 			exit_sshell();
-		}
 
 		if (_strcmp(lineptr, "env") == 0)
-		{
 			print_env();
-		}
 
 		args = split_tok(lineptr, rc);
 		if (args[0] != NULL)
@@ -47,7 +41,7 @@ int main(int __attribute__((unused))argc, char __attribute__((unused))**argv)
 		}
 		else
 		{
-			perror ("Error");
+			perror("Error");
 		}
 		free(args);
 	}

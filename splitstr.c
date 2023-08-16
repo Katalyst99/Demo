@@ -11,7 +11,7 @@ char **split_tok(char *line, int nbytes)
 	char *token, **tok_arr;
 	int tks = 0, i = 0;
 	char *dlimit = " \n";
-	
+
 	if (line == NULL)
 	{
 		return (NULL);
@@ -20,14 +20,14 @@ char **split_tok(char *line, int nbytes)
 	_strcpy(lcpy, line);
 
 	token = strtok(line, dlimit);
-	while(token)
+	while (token)
 	{
 		token = strtok(NULL, dlimit);
 		tks++;
 	}
 	tks++;
 
-	tok_arr = malloc(sizeof(char*) * tks);
+	tok_arr = malloc(sizeof(char) * tks);
 	if (tok_arr == NULL)
 	{
 		return (NULL);
@@ -45,5 +45,5 @@ char **split_tok(char *line, int nbytes)
 		token = strtok(NULL, dlimit);
 	}
 	tok_arr[i] = NULL;
-	return(tok_arr);
+	return (tok_arr);
 }

@@ -2,25 +2,20 @@
 
 /**
  * get_path - look for the path of a command
- * @cmd: The command 
+ * @cmd: The command
  * Return: The path of a command
  */
 char *get_path(char *cmd)
 {
-	char *p, *p_cpy;
-	char *p_tkn, *p_file;
+	char *p = _getenv("PATH"),  *p_cpy = _strdup(p), *p_tkn, *p_file;
 	int c_len, d_len;
 	struct stat buff;
 
-	p = _getenv("PATH");
-
 	if (p != NULL)
 	{
-		p_cpy = _strdup(p);
 		c_len = _strlen(cmd);
 		p_tkn = strtok(p_cpy, ":");
-
-		while(p_tkn)
+		while (p_tkn)
 		{
 			d_len = _strlen(p_tkn);
 			p_file = malloc(c_len + d_len + 2);
@@ -34,18 +29,12 @@ char *get_path(char *cmd)
 				free(p_cpy);
 				return (p_file);
 			}
-			else
-			{
-				free(p_file);
-				p_tkn = strtok(NULL, ":");
-			}
+			free(p_file);
+			p_tkn = strtok(NULL, ":");
 		}
 		free(p_cpy);
-
 		if (stat(cmd, &buff) == 0)
-		{
 			return (cmd);
-		}
 		return (NULL);
 	}
 	return (NULL);
